@@ -37,7 +37,7 @@ SensorTag.discover(function(sensorTag) {
             async.series([
               function(callback) {
                 console.log('readIrTemperature');
-                sensorTag.readIrTemperature(function(objectTemperature, ambientTemperature) {
+                sensorTag.readIrTemperature(function(error, objectTemperature, ambientTemperature) {
                   console.log('\tobject temperature = %d °C', objectTemperature.toFixed(1));
                   console.log('\tambient temperature = %d °C', ambientTemperature.toFixed(1));
 
@@ -49,7 +49,7 @@ SensorTag.discover(function(sensorTag) {
               },
               function(callback) {
                 console.log('readHumidity');
-                sensorTag.readHumidity(function(temperature, humidity) {
+                sensorTag.readHumidity(function(error, temperature, humidity) {
                   console.log('\ttemperature = %d °C', temperature.toFixed(1));
                   console.log('\thumidity = %d %', humidity.toFixed(1));
 
