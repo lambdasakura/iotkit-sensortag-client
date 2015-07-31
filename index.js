@@ -66,7 +66,7 @@ SensorTag.discover(function(sensorTag) {
 
                            var date = new Date();
                            console.log("==== " + date + " ====");
-                           var temp = results[0].objectTemperature;
+                           var temp = results[0].ambientTemperature;
                            var humidity = results[1].humidity;
 
                            console.log("temp: " + temp);
