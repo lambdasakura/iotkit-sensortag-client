@@ -36,11 +36,7 @@ SensorTag.discover(function(sensorTag) {
           setInterval(function() {
             async.series([
               function(callback) {
-                console.log('readIrTemperature');
                 sensorTag.readIrTemperature(function(error, objectTemperature, ambientTemperature) {
-                  console.log('\tobject temperature = %d °C', objectTemperature.toFixed(1));
-                  console.log('\tambient temperature = %d °C', ambientTemperature.toFixed(1));
-
                   var obj = Object();
                   obj['objectTemperature'] = objectTemperature;
                   obj['ambientTemperature'] = ambientTemperature;
@@ -48,11 +44,7 @@ SensorTag.discover(function(sensorTag) {
                 });
               },
               function(callback) {
-                console.log('readHumidity');
                 sensorTag.readHumidity(function(error, temperature, humidity) {
-                  console.log('\ttemperature = %d °C', temperature.toFixed(1));
-                  console.log('\thumidity = %d %', humidity.toFixed(1));
-
                   var obj = Object();
                   obj['temperature'] = temperature;
                   obj['humidity'] = humidity;
@@ -61,18 +53,10 @@ SensorTag.discover(function(sensorTag) {
               }
             ],
                          function(err, results) {
-                           console.log('results');
-                           console.log(results);
-
                            var date = new Date();
-                           console.log("==== " + date + " ====");
                            var temp = results[0].ambientTemperature;
                            var humidity = results[1].humidity;
-
-                           console.log("temp: " + temp);
                            sendObservation('temp', temp, date.getTime());
-
-                           console.log("humidity:" + humidity);
                            sendObservation('humidity', humidity, date.getTime());
                          }
                         );
