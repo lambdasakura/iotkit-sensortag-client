@@ -66,14 +66,14 @@ SensorTag.discover(function(sensorTag) {
 
                            var date = new Date();
                            console.log("==== " + date + " ====");
-                           var temp = tempPin.value();
-                           var light = lightPin.value();
+                           var temp = results[0].objectTemperature;
+                           var humidity = results[1].humidity;
 
-                           console.log(tempPin.name() + ": " + temp);
+                           console.log("temp: " + temp);
                            sendObservation('temp', temp, date.getTime());
 
-                           console.log(lightPin.name() + ": " + light);
-                           sendObservation('humidity', light, date.getTime());
+                           console.log("humidity:" + humidity);
+                           sendObservation('humidity', humidity, date.getTime());
                          }
                         );
           }, 1000*10);
